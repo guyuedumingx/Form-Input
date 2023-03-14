@@ -1,0 +1,46 @@
+#my-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    border-radius: 10px;
+    /* width: 150px; */
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.column {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    margin-right: 5px;
+}
+
+.form-input-box {
+    display: flex;
+    flex-flow: row; 
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.form-input-box > .key  {
+    text-align: center;
+    font-size: 12px;
+    background-color: #f3f3f3;
+    border: 1px solid #cdcdcd;
+    width: 12px;
+    height: 15px;
+    line-height: 15px;
+    padding: 0px 2px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.form-input-box > .value  {
+    flex: 1;
+}

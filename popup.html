@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>form-input</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <h1>Form Input Configuration</h1>
+    <p>Fill form fields with predefined text using hotkeys</p>
+    <form>
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title">
+      <label for="content">Content</label>
+      <input type="text" id="content" name="content">
+      <label for="json-content">Load Josn Configuration</label>
+      <input type="text" id="json-content" name="json-content">
+      <button type="button" id="save-btn">Save</button>
+    </form>
+    <div id="config-info"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
