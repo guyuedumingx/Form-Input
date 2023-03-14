@@ -10,14 +10,14 @@ chrome.storage.sync.get().then((data) => {
 });
 
 // 切换插件的启用状态
-saveBtn.onclick = function() {
-  if(title.value !== "" && content.value !==""){
-    chrome.storage.sync.set({ [title.value]: content.value });
+saveBtn.onclick = function () {
+  if (title.value !== "" && content.value !== "") {
+    chrome.storage.sync.set({ [title.value]: content.value, count: 0 });
     title.value = "";
     content.value = "";
   }
-  if(jc.value !== ""){
-    let json = JSON.parse(jc.value)
+  if (jc.value !== "") {
+    let json = JSON.parse(jc.value);
     chrome.storage.sync.set(json);
     jc.value = "";
   }
