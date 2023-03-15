@@ -10,13 +10,11 @@
         "128": "images/icon-128.png"
     },
     "permissions": ["tabs", "activeTab", "declarativeContent", "storage", "unlimitedStorage", "contextMenus", "alarms", "notifications"],
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["contentScript.js"],
-            "css": ["content.css"]
-        }
-    ],
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["contentScript2.js"],
+        "css": ["content.css"]
+    }],
     "action": {
         "default_popup": "popup.html"
     }

@@ -102,6 +102,7 @@ document.addEventListener("keydown", function (event) {
               [key]: map[key],
             };
           }
+          console.log(data);
           const div = buildHelpWindow(document.createElement("div"), data);
           document.body.appendChild(div);
           isShow = true;
