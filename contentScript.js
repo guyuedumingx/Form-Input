@@ -3,18 +3,18 @@ let activeElement = null;
 let bindings = "abcdehijklmnopqrstuvwxyz";
 
 function getKeys(count) {
-  let now = "";
+  let preffix = "";
   let res = [];
   let p = 0;
   while (true) {
     for (let i = 0; i < bindings.length; i++) {
-      res.push(now + bindings[i]);
+      res.push(preffix + bindings[i]);
       p++;
       if (p === count) {
         return res;
       }
     }
-    now = res.shift();
+    preffix = res.shift();
     p--;
   }
 }

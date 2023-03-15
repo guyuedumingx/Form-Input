@@ -6,7 +6,9 @@ const configInfo = document.querySelector("#config-info");
 
 // 获取存储在插件中的配置
 chrome.storage.sync.get().then((data) => {
-  configInfo.innerHTML = data;
+  let html = "";
+  for (let key in data) html += `<div>${key} : ${data[key]}</div>`;
+  configInfo.innerHTML = html;
 });
 
 // 切换插件的启用状态

@@ -17,7 +17,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  margin-right: 5px;
+  margin-right: 15px;
 }
 
 .form-input-box {
