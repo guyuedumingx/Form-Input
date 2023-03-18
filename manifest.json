@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Form Input",
     "description": "Enable focus mode on Chrome's official Extensions and Chrome Web Store documentation.",
-    "version": "0.1.0",
+    "version": "2.0.0",
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",
