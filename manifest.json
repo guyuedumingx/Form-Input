@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Form Input",
-    "description": "Quick fill content into form",
+    "description": "Quick fill content into form. http://https://github.com/guyuedumingx/Form-Input",
     "version": "2.0.0",
     "icons": {
         "16": "images/icon-16.png",
