@@ -90,9 +90,10 @@ const _openWindow = (data) => {
 
 const updateWindowContent = (windowElement, data = []) => {
   const keys = generateKeysByBindings(bindings, data.length);
-  data = data.sort((a, b) => {
-    return b.count - a.count;
-  });
+  //按照使用次数排序
+  // data = data.sort((a, b) => {
+  //   return b.count - a.count;
+  // });
   key2IndexMap = bindingKeysToData(keys, data);
   windowElement.innerHTML = "";
   //一列最多放25行
@@ -165,7 +166,7 @@ const bindingKeysToData = (bindingKeys, data) => {
 };
 
 const setContentAndCount = (activeElement, obj) => {
-  obj.count++;
+  obj.count += obj.count;
   if (!activeElement) return;
   activeElement.value = obj.content;
   activeElement.dispatchEvent(new Event("change"));
