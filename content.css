@@ -47,6 +47,11 @@
   color: rgb(38, 34, 34);
 }
 
+.heightlight-target .key {
+  background-color: rgb(43, 85, 182);
+  color: rgb(255, 255, 255);
+}
+
 .form-input-box > .value {
   flex: 1;
 }
