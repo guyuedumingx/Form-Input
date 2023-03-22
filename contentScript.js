@@ -34,12 +34,16 @@ document.addEventListener("keydown", function (event) {
           return;
         }
         //normal
-        if (key2IndexMap[curKey])
-          setContentAndCount(activeElement, data[key2IndexMap[curKey]]);
+        select();
       }
     });
   }
 });
+
+const select = () => {
+  if (key2IndexMap[curKey])
+    setContentAndCount(activeElement, data[key2IndexMap[curKey]]);
+};
 
 const highlight = (data, mode, curKey) => {
   //normal模式搜索key字段
@@ -50,6 +54,15 @@ const highlight = (data, mode, curKey) => {
     const ele = data[key].element;
     if (data[key][s].startsWith(curKey)) highlightElement(ele);
     else delhighlightElement(ele);
+  }
+};
+
+const highlightElements = (elements) => {
+  for (let key in data) {
+    data.delhighlightElement(data[key].element);
+  }
+  for (let k in elements) {
+    data.highlightElement(elements[k].element);
   }
 };
 
@@ -165,6 +178,12 @@ const bindingKeysToData = (bindingKeys, data) => {
   return key2IndexMap;
 };
 
+/**
+ * 把对象填充到页面的活动元素中
+ * @param {*} activeElement 当前页面被选中的元素
+ * @param {*} obj 将要被选择的对象
+ * @returns
+ */
 const setContentAndCount = (activeElement, obj) => {
   obj.count += obj.count;
   if (!activeElement) return;
