@@ -13,7 +13,7 @@ document.addEventListener("keydown", function (event) {
     //读取存储中的信息
     chrome.storage.sync.get().then((map) => {
       if (event.key === "i" && event.altKey) {
-        toggleWindow(map);
+        toggleWindow(map["data"]);
         return;
       } else if (event.key === "/") {
         toggleSearchMode();

@@ -1,11 +1,46 @@
-const title = document.querySelector("#title");
-const content = document.querySelector("#content");
-const jc = document.querySelector("#json-content");
+const titleFeild = document.querySelector("#title");
+const contentFeild = document.querySelector("#content");
+const jsonFeild = document.querySelector("#json-content");
 const saveBtn = document.querySelector("#save-btn");
 const configInfo = document.querySelector("#config-info");
+let data = {};
 var { pinyin } = pinyinPro;
 
 const pattern = /([\u4e00-\u9fa5]+|[a-zA-Z]+)/g;
+
+chrome.storage.sync.get().then((d) => {
+  data = d["data"];
+  let html = "";
+  for (let key in data) html += `<div>${key} : ${data[key].content}</div>`;
+  configInfo.innerHTML = html;
+});
+
+saveBtn.onclick = function () {
+  if (titleFeild.value !== "" && contentFeild.value !== "") {
+    saveToData(titleFeild.value, contentFeild.value);
+    chrome.storage.sync.set({ data: data });
+    titleFeild.value = "";
+    contentFeild.value = "";
+  }
+  if (jsonFeild.value !== "") {
+    let json = JSON.parse(jsonFeild.value);
+
+    for (let key in json) {
+      saveToData(key, json[key]);
+    }
+    chrome.storage.sync.set({ data: data });
+    jsonFeild.value = "";
+  }
+};
+
+const saveToData = (key, value) => {
+  data[key] = {
+    name: key,
+    content: value,
+    pinyin: toPinyin(key),
+    count: 0,
+  };
+};
 
 const toPinyin = (text) => {
   // 使用 match 方法将匹配的结果保存到数组中
@@ -32,43 +67,5 @@ const toPinyin = (text) => {
       initials.push(initial);
     }
   }
-
   return initials.join("");
-};
-
-// 获取存储在插件中的配置
-chrome.storage.sync.get().then((data) => {
-  let html = "";
-  for (let key in data) html += `<div>${key} : ${data[key]}</div>`;
-  configInfo.innerHTML = html;
-});
-
-saveBtn.onclick = function () {
-  if (title.value !== "" && content.value !== "") {
-    chrome.storage.sync.set({
-      [title.value]: {
-        name: title.value,
-        content: content.value,
-        pinyin: toPinyin(title.value),
-        count: 0,
-      },
-    });
-    title.value = "";
-    content.value = "";
-  }
-  if (jc.value !== "") {
-    let json = JSON.parse(jc.value);
-
-    for (let key in json) {
-      chrome.storage.sync.set({
-        [key]: {
-          name: key,
-          content: json[key],
-          pinyin: toPinyin(key),
-          count: 0,
-        },
-      });
-    }
-    jc.value = "";
-  }
 };
