@@ -1,7 +1,7 @@
 let mode = 0; //0表示normal模式 1: search模式
 let isShow = false; //表示窗口有没有显示
 let bindings = "abcdefghijklmnopqrstuvwxyz".split(""); // 可以映射成关键字的字母
-var data = {}; //所有数据
+var data = []; //所有数据
 let activeElement = null;
 let windowElement = null;
 let curKey = "";
@@ -15,7 +15,7 @@ document.addEventListener("keydown", function (event) {
   if (chrome.runtime?.id) {
     if (event.key === "i" && event.altKey) {
       chrome.storage.sync.get().then((map) => {
-        toggleWindow(map["data"]);
+        toggleWindow(map);
       });
       return;
     }
@@ -49,7 +49,7 @@ document.addEventListener("keydown", function (event) {
 const select = (idx) => {
   if (candidateList.length > idx) {
     setContentAndCount(activeElement, candidateList[idx]);
-    toggleWindow(data);
+    toggleWindow();
   }
 };
 
@@ -92,13 +92,13 @@ const delhighlightElement = (ele) => {
 const toggleWindow = (localData = []) => {
   if (isShow) {
     closeWindow(localData);
-    data = [];
+    localData = [];
     curKey = "";
   } else {
     // data = data.sort((a, b) => {
     //   return a.key.localeCompare(b.key);
     // });
-    data = localData.sort((a, b) => {
+    data = Object.values(localData).sort((a, b) => {
       return b.count - a.count;
     });
     candidateList = data;
@@ -110,7 +110,7 @@ const toggleWindow = (localData = []) => {
 
 const closeWindow = (data) => {
   windowElement.parentNode.removeChild(windowElement);
-  chrome.storage.sync.set({ data: data });
+  // chrome.storage.sync.set({ data: data });
 };
 
 const _openWindow = (data = []) => {

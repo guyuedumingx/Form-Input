@@ -3,16 +3,15 @@ const contentFeild = document.querySelector("#content");
 const jsonFeild = document.querySelector("#json-content");
 const saveBtn = document.querySelector("#save-btn");
 const configInfo = document.querySelector("#config-info");
-let data = [];
 var { pinyin } = pinyinPro;
 
 const pattern = /([\u4e00-\u9fa5]+|[a-zA-Z]+)/g;
 
-// chrome.storage.sync.get().then((localMap) => {
-//   let html = "";
-//   for (let i in data) html += `<div>${i} : ${data[i].content}</div>`;
-//   configInfo.innerHTML = html;
-// });
+chrome.storage.sync.get().then((data) => {
+  let html = "";
+  for (let key in data) html += `<div>${key} : ${data[key].content}</div>`;
+  configInfo.innerHTML = html;
+});
 
 saveBtn.onclick = function () {
   if (titleFeild.value !== "" && contentFeild.value !== "") {
@@ -22,24 +21,23 @@ saveBtn.onclick = function () {
   }
   if (jsonFeild.value !== "") {
     let json = JSON.parse(jsonFeild.value);
-
     for (let key in json) {
       saveToData(key, json[key]);
     }
     jsonFeild.value = "";
   }
-  chrome.storage.sync.set({ data: data });
 };
 
 const saveToData = (key, value) => {
   let pinyin = toPinyin(key);
-  console.log(data);
-  data.push({
-    key: pinyin,
-    name: key,
-    content: value,
-    pinyin: pinyin,
-    count: 0,
+  chrome.storage.sync.set({
+    [key]: {
+      key: pinyin,
+      name: key,
+      content: value,
+      pinyin: pinyin,
+      count: 0,
+    },
   });
 };
 
