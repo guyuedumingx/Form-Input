@@ -27,6 +27,8 @@
   "籍贯": "山东济南"
 }
 ```
+## TODO
+1. add crx to release
 
 ## ScreenShot
 
