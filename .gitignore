@@ -1,3 +1,5 @@
 *.json
+*.crx
+*.pem
 
 !mock.json
