@@ -40,9 +40,9 @@
 
 ## ScreenShot
 
-![extensions](./images/Snipaste_2023-03-18_13-21-24.png)
-![popup](./images/Snipaste_2023-03-18_13-23-32.png)
-![popup](./images/Snipaste_2023-03-18_13-27-16.png)
+![extensions](./src/images/Snipaste_2023-03-18_13-21-24.png)
+![popup](./src/images/Snipaste_2023-03-18_13-23-32.png)
+![popup](./src/images/Snipaste_2023-03-18_13-27-16.png)
 
 ## Development
 
