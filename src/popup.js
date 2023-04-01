@@ -7,7 +7,7 @@ var { pinyin } = pinyinPro;
 
 const pattern = /([\u4e00-\u9fa5]+|[a-zA-Z]+)/g;
 
-chrome.storage.sync.get().then((data) => {
+chrome.storage.local.get().then((data) => {
   let html = "";
   for (let key in data) html += `<div>${key} : ${data[key].content}</div>`;
   configInfo.innerHTML = html;
@@ -21,22 +21,23 @@ saveBtn.onclick = function () {
   }
   if (jsonFeild.value !== "") {
     let json = JSON.parse(jsonFeild.value);
+    let len = Object.values(json).length;
     for (let key in json) {
-      saveToData(key, json[key]);
+      saveToData(key, json[key], len--);
     }
     jsonFeild.value = "";
   }
 };
 
-const saveToData = (key, value) => {
+const saveToData = (key, value, count = 0) => {
   let pinyin = toPinyin(key);
-  chrome.storage.sync.set({
+  chrome.storage.local.set({
     [key]: {
       key: pinyin,
       name: key,
       content: value,
       pinyin: pinyin,
-      count: 0,
+      count: count,
     },
   });
 };

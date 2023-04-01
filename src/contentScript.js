@@ -14,7 +14,7 @@ let candidateList = [];
 document.addEventListener("keydown", function (event) {
   if (chrome.runtime?.id) {
     if (event.key === "i" && event.altKey) {
-      chrome.storage.sync.get().then((map) => {
+      chrome.storage.local.get().then((map) => {
         toggleWindow(map);
       });
       return;
@@ -24,7 +24,7 @@ document.addEventListener("keydown", function (event) {
       if (bindings.includes(event.key)) curKey += event.key;
       if (event.key === "/") {
         toggleSearchMode();
-        return;
+        candidateList = updateCandidateList(data, mode, curKey);
       } else if (event.key === "Backspace") {
         curKey = curKey.slice(0, curKey.length - 1);
         candidateList = updateCandidateList(data, mode, curKey);
@@ -58,8 +58,10 @@ const updateCandidateList = (
   mode,
   curKey,
   match = (item, curKey, mode) => {
-    return item.key.startsWith(curKey);
-  }
+    if (mode == 1) return item.key.includes(curKey);
+    else if (mode == 0) return item.key.startsWith(curKey);
+  },
+  rebuildWindow = false
 ) => {
   curTargetIndex = 0;
   let newCandidateList = [];
@@ -67,6 +69,8 @@ const updateCandidateList = (
     if (match(candidateList[k], curKey, mode))
       newCandidateList.push(candidateList[k]);
   }
+  //重新更新窗口
+  if (rebuildWindow) updateWindowContent(windowElement, candidateList);
   return newCandidateList;
 };
 
@@ -95,9 +99,7 @@ const toggleWindow = (localData = []) => {
     localData = [];
     curKey = "";
   } else {
-    // data = data.sort((a, b) => {
-    //   return a.key.localeCompare(b.key);
-    // });
+    data = data.sort((a, b) => b.count - a.count);
     data = Object.values(localData).sort((a, b) => {
       return b.count - a.count;
     });
@@ -105,12 +107,15 @@ const toggleWindow = (localData = []) => {
     _openWindow(data);
   }
   isShow = !isShow;
-  mode = 0;
 };
 
 const closeWindow = (data) => {
   windowElement.parentNode.removeChild(windowElement);
   // chrome.storage.sync.set({ data: data });
+
+  //模拟输入
+  mockKeyEvent(" ");
+  mockKeyEvent("Backspace");
 };
 
 const _openWindow = (data = []) => {
@@ -157,7 +162,6 @@ const _bulidColumn = (maxRowPerCol, col, data = []) => {
 };
 
 const toggleSearchMode = () => {
-  curKey = "";
   if (mode == 1) {
     mode = 0;
     windowElement.style.backgroundColor = "#fff";
@@ -175,8 +179,18 @@ const toggleSearchMode = () => {
  */
 const setContentAndCount = (activeElement, obj) => {
   obj.count += obj.count;
+  chrome.storage.local.set({ [obj.name]: obj });
   if (!activeElement) return;
   activeElement.value = obj.content;
+  // if (activeElement["value"] != undefined)
+  //   Object.defineProperty(activeElement, "value", { value: obj.content });
   activeElement.dispatchEvent(new Event("change"));
   activeElement.dispatchEvent(new Event("input"));
+};
+
+const mockKeyEvent = (key) => {
+  // key 是键盘对应键的code值
+  var a = new KeyboardEvent("keydown", { detail: 1, view: window });
+  Object.defineProperty(a, "key", { value: key });
+  document.dispatchEvent(a);
 };
