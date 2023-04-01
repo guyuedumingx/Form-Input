@@ -27,8 +27,16 @@
   "籍贯": "山东济南"
 }
 ```
+
+## ShortCuts
+
+`Alt` + `i` : 打开或关闭面板  
+`/` : 切换搜索模式 (暗色搜索模式下，不需要从头匹配， 如：`个人简介`为`grjj`，键入`jj`也能搜索到)
+
 ## TODO
+
 1. add crx to release
+2. search the content feild
 
 ## ScreenShot
 
