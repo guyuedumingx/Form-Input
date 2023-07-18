@@ -6,19 +6,25 @@
     <link rel="stylesheet" href="./popup.css" />
   </head>
   <body>
-    <h1>Form Input Configuration</h1>
-    <p>Fill form fields with predefined text using hotkeys</p>
+    <h1>速填简历</h1>
+    <h3>使用快捷键快速填充简历表单</h3>
+    <p>Alt+i 唤出填充面板</p>
+    <p>输入关键字首拼</p>
+    <p>按下回车键选择该项目</p>
+    <p>按下Tab切换项目</p>
     <form>
-      <label for="title">Title</label>
+      <label for="title">关键字</label>
       <input type="text" id="title" name="title">
-      <label for="content">Content</label>
+      <label for="content">被填充内容</label>
       <input type="text" id="content" name="content">
-      <label for="json-content">Load Josn Configuration</label>
+      <label for="json-content">从Json文件中加载配置</label>
       <input type="text" id="json-content" name="json-content">
-      <button type="button" id="save-btn">Save</button>
+      <button type="button" id="save-btn">保存</button>
     </form>
+    <p><a href="./options.html">进入配置界面(右键点击插件icon->选项(options))</a></p>
     <div id="config-info"></div>
     <script src="pinyin-pro.js"></script>
+    <script src="util.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>

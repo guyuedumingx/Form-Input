@@ -182,10 +182,17 @@ const setContentAndCount = (activeElement, obj) => {
   chrome.storage.local.set({ [obj.name]: obj });
   if (!activeElement) return;
   activeElement.value = obj.content;
-  // if (activeElement["value"] != undefined)
-  //   Object.defineProperty(activeElement, "value", { value: obj.content });
-  activeElement.dispatchEvent(new Event("change"));
-  activeElement.dispatchEvent(new Event("input"));
+  // activeElement.dispatchEvent(new Event("change"));
+  // activeElement.focus();
+  // activeElement.value = "";
+  // const inputEvent = new InputEvent("input", { data: obj.content });
+  // activeElement.dispatchEvent(inputEvent);
+  // const dataTransfer = new DataTransfer();
+  // dataTransfer.setData("text", obj.content);
+  // const pasteEvent = new ClipboardEvent("paste", {
+  //   clipboardData: dataTransfer,
+  // });
+  // activeElement.dispatchEvent(pasteEvent);
 };
 
 const mockKeyEvent = (key) => {

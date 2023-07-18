@@ -1,0 +1,173 @@
+body {
+  font-size: 14px;
+}
+
+.recipe {
+  padding: 1em;
+}
+.recipe__title {
+  margin-top: 0;
+}
+
+/* .recipe__info {
+  vertical-align: top;
+  text-align: right;
+  padding: 0 1em 0 0;
+  margin: 0 1.3em 0 0;
+  font-weight: bold;
+  color: #454545;
+  border-right: 1px dotted #eee;
+  width: 300px;
+  float: left;
+} */
+
+.recipe__ingredients {
+  float: left;
+}
+
+/* .recipe-table {
+  position: relative;
+  padding: 1em;
+  border: 1px solid #ddd;
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5);
+  z-index: 10;
+} */
+
+.recipe-table__cell {
+  vertical-align: top;
+  padding: 3px 5px;
+}
+.recipe__text-field {
+  margin: 0;
+  padding: 0.45em 0.92em;
+  font-size: 1em;
+  line-height: 1.4;
+  color: #555555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+.recipe-table__add-row {
+  margin-top: 0;
+  margin-bottom: 2.5em;
+  position: relative;
+  border-top: 1px solid #eee;
+  z-index: 8;
+}
+
+.recipe-table__add-row-btn {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 4em;
+  margin: 0 auto;
+  -webkit-transition: all 0.2s easy-in;
+  transition: all 0.2s easy-in;
+  text-align: center;
+  opacity: 0.5;
+  color: #fff;
+  border: 1px solid #16a085;
+  border-bottom-right-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  background: #16a085;
+  height: 1.5em;
+  line-height: 1.5em;
+}
+
+.recipe-table__add-row-btn:hover {
+  opacity: 1;
+}
+
+.recipe-table__save-btn:hover {
+  opacity: 1;
+}
+
+.recipe-table__save-btn {
+  display: block;
+  cursor: pointer;
+  position: sticky;
+  right: 0;
+  left: 0;
+  /* width: 4em; */
+  margin: 0 auto;
+  -webkit-transition: all 0.2s easy-in;
+  transition: all 0.2s easy-in;
+  text-align: center;
+  opacity: 0.5;
+  color: #fff;
+  border: 1px solid #35538f;
+  /* border-bottom-right-radius: 1em; */
+  /* border-bottom-left-radius: 1em; */
+  background: #35538f;
+  height: 3em;
+  line-height: 3em;
+}
+
+.recipe-table__del-row-btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.45em 0.92em;
+  font-size: 1em;
+  line-height: 1.4;
+  border: 1px solid #f39c12;
+  color: #f39c12;
+  text-decoration: none;
+  transition: all 0.3s;
+  text-align: center;
+  background-color: #fff;
+}
+.recipe-table__del-row-btn:hover {
+  background: #f39c12;
+  color: #fff;
+}
+
+.drag-handler {
+  width: 1.4em;
+  position: relative;
+  background-color: #e4e6eb;
+  background-image: linear-gradient(
+    45deg,
+    #e4e6eb,
+    #e4e6eb 2px,
+    #fff 2px,
+    #fff 4px,
+    #e4e6eb 4px,
+    #e4e6eb 9px,
+    #fff 9px,
+    #fff 11px,
+    #e4e6eb 11px,
+    #e4e6eb 16px,
+    #fff 16px,
+    #fff 18px,
+    #e4e6eb 18px,
+    #e4e6eb 22px
+  );
+  background-size: 10px 20px;
+  cursor: move;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.drag-handler:active {
+  background-image: linear-gradient(
+    45deg,
+    #bab86c,
+    #bab86c 2px,
+    #fff 2px,
+    #fff 4px,
+    #bab86c 4px,
+    #bab86c 9px,
+    #fff 9px,
+    #fff 11px,
+    #bab86c 11px,
+    #bab86c 16px,
+    #fff 16px,
+    #fff 18px,
+    #bab86c 18px,
+    #bab86c 22px
+  );
+  background-size: 10px 20px;
+}
