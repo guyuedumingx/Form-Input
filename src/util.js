@@ -1,6 +1,7 @@
 var { pinyin } = pinyinPro;
 const pattern = /([\u4e00-\u9fa5]+|[a-zA-Z]+)/g;
 
+//使用本地local storage 来存储用户信息
 const saveToData = (key, value, count = 0) => {
   let pinyin = toPinyin(key);
   chrome.storage.local.set({
