@@ -1,0 +1,33 @@
+/* #my-popup {
+  height: 80%;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(20 1fr);
+  gap: 1px;
+}
+
+#my-popup > * {
+  background-color: aqua;
+  margin: 0px;
+  padding: 0px;
+} */
+
+#popup {
+  min-height: fit-content;
+}
+
+#content {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 80%;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#content > * {
+  margin: 0px;
+  padding: 0px;
+  flex: 1;
+  font-size: small;
+}
