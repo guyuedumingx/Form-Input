@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "速填简历",
+    "description": "使用快捷键快速填充简历表单",
+    "version": "4.0.0",
+    "author": "yohoyes@163.com",
+    "icons": {
+        "16": "images/form-16.png",
+        "32": "images/form-32.png",
+        "48": "images/form-48.png"
+    },
+    "permissions": ["tabs", "activeTab", "declarativeContent", "storage", "unlimitedStorage", "contextMenus", "alarms", "notifications"],
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["contentScript.js"],
+        "css": ["content.css"]
+    }],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "options_page": "options.html"
+}

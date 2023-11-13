@@ -3,3 +3,4 @@
 *.pem
 
 !mock.json
+!manifest.json
